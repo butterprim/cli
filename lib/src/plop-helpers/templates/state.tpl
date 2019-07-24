@@ -5,20 +5,18 @@ export interface {{pascalCase name}}StateModel {
   items: string[];
 }
 
-const defaults = {
-  items: []
-};
-
 @State<{{pascalCase name}}StateModel>({
   name: '{{camelCase name}}',
-  defaults
+  defaults: {
+    items: []
+  }
 })
 export class {{pascalCase name}}State {
 
   constructor() {}
 
   @Selector()
-  static items(state: {{pascalCase name}}State) {
+  static items(state: {{pascalCase name}}StateModel) {
     return state.items;
   }
 
