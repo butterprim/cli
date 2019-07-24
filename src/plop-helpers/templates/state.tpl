@@ -1,8 +1,8 @@
-import { State, Action, StateContext } from '@ngxs/store';
+import { Action, State, StateContext, Selector } from '@ngxs/store';
 import { {{pascalCase name}}Action } from './{{dashCase name}}.actions';
 
-export class {{pascalCase name}}StateModel {
-  public items: string[];
+export interface {{pascalCase name}}StateModel {
+  items: string[];
 }
 
 const defaults = {
@@ -14,6 +14,14 @@ const defaults = {
   defaults
 })
 export class {{pascalCase name}}State {
+
+  constructor() {}
+
+  @Selector()
+  static items(state: {{pascalCase name}}State) {
+    return state.items;
+  }
+
   @Action({{pascalCase name}}Action)
   add({ getState, setState }: StateContext<{{pascalCase name}}StateModel>, { payload }: {{pascalCase name}}Action) {
     const state = getState();
